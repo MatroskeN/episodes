@@ -1,0 +1,16 @@
+.card{
+  margin-right: 30px;
+  margin-bottom: 20px;
+  .cardPic{
+    padding: 10px;
+    max-width: 275px;
+    width: auto;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 601px){
+  .card{
+    margin-right: unset;
+  }
+}
