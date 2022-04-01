@@ -21,7 +21,7 @@ const Header: FC<Props> = ({title}): ReactElement => {
                         {title}
                     </Navbar.Brand>
                     <Nav className="me-auto">
-                        <Nav.Link href="#home">Главная</Nav.Link>
+                        <Nav.Link href={'/'}>Главная</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>

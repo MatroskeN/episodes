@@ -1,34 +1,20 @@
-import React, {ReactElement, FC} from "react";
-import { useState, useEffect} from "react";
-import css from './Main.module.scss';
+import React from "react";
 import {Container} from "react-bootstrap";
-import Item from './Item/Item';
-
+import Wrapper from "./Wrapper/Wrapper";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import SingleCard from "./SingleCard/SingleCard";
 
 function Main() {
-
-    const [eps, setEps] = useState([])
-    const [error, setError] = useState({})
-
-    useEffect(() =>{
-        fetch('https://rickandmortyapi.com/api/episode')
-            .then(response => response.json())
-            .then(res => setEps(res.results.slice(0,10)))
-            .catch(err => setError(err))
-    }, [])
-
     return (
-        <Container className={'p-3'}>
-            <div className={css.wrapper}>
-                {
-                    eps.map((episode) => {
-                        return(
-                            <Item title={episode['name']} date={episode['air_date']} number={episode['episode']} />
-                        )
-                    })
-                }
-            </div>
-        </Container>
+        <BrowserRouter>
+            <Container className={'p-3'}>
+                {/*<Wrapper/>*/}
+                <Routes>
+                    <Route path='/' element={<Wrapper/>}/>
+                    <Route path='/singleCard' element={<SingleCard />}/>
+                </Routes>
+            </Container>
+        </BrowserRouter>
     );
 };
 

@@ -1,14 +1,35 @@
 import React, {ReactElement, FC} from "react";
 import css from './Item.module.scss';
 import {Card, ListGroup, ListGroupItem} from "react-bootstrap";
+import {Link, NavLink} from "react-router-dom";
+import {useState, useEffect} from "react";
+
+interface ICharacter{
+    name:string
+}
 
 interface Props {
     title: String
     date: String
     number: String
+    id: Number
+    characters: Array<String>
 }
 
-const Item: FC<Props> = ({title,date, number}): ReactElement => {
+const Item: FC<Props> = ({title,date, number, id, characters}): ReactElement => {
+    let characterList:string = '';
+    characters.map((character)=>{
+        characterList+=(character.split('https://rickandmortyapi.com/api/character/')[1])+',';
+    })
+
+    const [char, setChar] = useState<ICharacter [] | []>([])
+
+    useEffect(()=>{
+        fetch('https://rickandmortyapi.com/api/character/'+characterList)
+            .then(response => response.json())
+            .then(res => setChar(res))
+    },[])
+
     return (
         <Card style={{ width: '18rem' }} className={css.card}>
             <Card.Body>
@@ -17,11 +38,12 @@ const Item: FC<Props> = ({title,date, number}): ReactElement => {
             <ListGroup className="list-group-flush">
                 <ListGroupItem>Episode: {number}</ListGroupItem>
                 <ListGroupItem>Air date: {date}</ListGroupItem>
-                <ListGroupItem>Vestibulum at eros</ListGroupItem>
             </ListGroup>
             <Card.Body>
-                <Card.Link href="#">
-                    Episode link
+                <Card.Link>
+                    <Link to={"/singleCard"}
+                    state={id}
+                    >See all characters</Link>
                 </Card.Link>
             </Card.Body>
         </Card>
