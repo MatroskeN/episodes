@@ -2,7 +2,7 @@
 
 Проект был собран на [Create React App](https://github.com/facebook/create-react-app).
 
-Да, это API Rick&Morty.
+Да, это API [Rick&Morty](rickandmortyapi.com/).
 
 Да, всего 20 эпизодов, для наглядности.
 
