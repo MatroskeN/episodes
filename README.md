@@ -1,6 +1,8 @@
-# Getting Started
+# Приступим
 
 Проект был собран на [Create React App](https://github.com/facebook/create-react-app).
+Да, это API Rick&Morty
+Да, всего 20 эпизодов, для наглядности
 
 ## Запуск
 
