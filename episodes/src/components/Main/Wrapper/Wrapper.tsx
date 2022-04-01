@@ -43,12 +43,12 @@ function Wrapper() {
 
     return (
         <div className={css.root}>
-            <Form.Label>Enter the name of the episode</Form.Label>
-            <Form.Control type={'text'} placeholder={'Enter'} id={'sortName'} name={'sortName'}
+            <Form.Label>Введите название эпизода</Form.Label>
+            <Form.Control type={'text'} placeholder={'Название...'} id={'sortName'} name={'sortName'}
                           onChange={(e) => setInputValue(e.target.value)}></Form.Control>
             <br/>
             <Button type="button" variant={'dark'} onClick={searchCard}>
-                Search
+                Поиск
             </Button>
 
             <div className={css.wrapper}>

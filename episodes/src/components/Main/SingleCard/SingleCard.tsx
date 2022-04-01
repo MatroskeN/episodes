@@ -5,6 +5,7 @@ import React, {useEffect, useState} from "react";
 import {Swiper, SwiperSlide} from "swiper/react";
 import 'swiper/swiper-bundle.min.css'
 import 'swiper/swiper.min.css'
+import SwiperCore, { Autoplay } from 'swiper';
 
 
 interface ICharacter {
@@ -15,13 +16,15 @@ interface ICharacter {
 }
 
 function SingleCard() {
+    SwiperCore.use([Autoplay]);
+
     const location = useLocation()
     const data = location.state
 
-    const [eps, setEps] = useState([])
 
     const [char, setChar] = useState<ICharacter [] | []>([])
     const [error, setError] = useState({})
+    const [title, setTitle] = useState('')
 
 
     useEffect(() => {
@@ -29,6 +32,7 @@ function SingleCard() {
             .then(response => response.json())
             .then(async (res) => {
                 let character: string = '';
+                setTitle(res.name)
                 res.characters.map((characters: string) => {
                     character += (characters.split('https://rickandmortyapi.com/api/character/')[1]) + ',';
                 })
@@ -43,23 +47,28 @@ function SingleCard() {
 
     }, [])
 
-
     return (
         <div className={css.root}>
             <h2 className="title">
-                All the characters mentioned in the episode
+                {title}
             </h2>
+            <h4>
+                Все персонажи, упоминаемые в эпизоде
+            </h4>
             <div className={css.carousel}>
                 <Swiper
+                    loop={true}
+                    autoplay={{
+                        delay: 1500,
+                        disableOnInteraction: false
+                    }}
                     spaceBetween={0}
                     centeredSlides={true}
                     breakpoints={{
-                        // when window width is >= 640px
                         640: {
                             width: 320,
                             slidesPerView: 1,
                         },
-                        // when window width is >= 768px
                         768: {
                             width: 600,
                             slidesPerView: 2,
@@ -81,8 +90,8 @@ function SingleCard() {
                                             <Card.Title>{characters.name}</Card.Title>
                                         </Card.Body>
                                         <ListGroup className="list-group-flush">
-                                            <ListGroupItem>Gender: {characters.gender}</ListGroupItem>
-                                            <ListGroupItem>Status: {characters.status}</ListGroupItem>
+                                            <ListGroupItem>Гендер: {characters.gender}</ListGroupItem>
+                                            <ListGroupItem>Статус: {characters.status}</ListGroupItem>
                                         </ListGroup>
                                     </Card>
                                 </SwiperSlide>
@@ -92,7 +101,7 @@ function SingleCard() {
                 </Swiper>
             </div>
             <h5 className={css.swipe}>
-                {"<< Swipe with thumb >>"}
+                {"<< Пролистывайте пальцем >>"}
             </h5>
         </div>
     )

@@ -8,7 +8,6 @@ function Main() {
     return (
         <BrowserRouter>
             <Container className={'p-3'}>
-                {/*<Wrapper/>*/}
                 <Routes>
                     <Route path='/' element={<Wrapper/>}/>
                     <Route path='/singleCard' element={<SingleCard />}/>

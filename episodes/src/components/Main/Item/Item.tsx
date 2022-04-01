@@ -36,14 +36,14 @@ const Item: FC<Props> = ({title,date, number, id, characters}): ReactElement => 
                 <Card.Title>{title}</Card.Title>
             </Card.Body>
             <ListGroup className="list-group-flush">
-                <ListGroupItem>Episode: {number}</ListGroupItem>
-                <ListGroupItem>Air date: {date}</ListGroupItem>
+                <ListGroupItem>Эпизод: {number}</ListGroupItem>
+                <ListGroupItem>Дата выхода: {date}</ListGroupItem>
             </ListGroup>
             <Card.Body>
                 <Card.Link>
                     <Link to={"/singleCard"}
                     state={id}
-                    >See all characters</Link>
+                    >Посмотреть всех персонажей</Link>
                 </Card.Link>
             </Card.Body>
         </Card>
